@@ -27,17 +27,14 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   /* display: flex; */
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: ${(props) => props.padding || "24px"};
   text-align: center;
   align-items: center;
   border-radius: 8px;
-
-  background-color: #fff;
-  min-width: 50vw;
-  min-height: 40vh;
+  background-color: ${(props) => props.backgroundColor || "#fff"};
+  margin: ${(props) => props.margin || "0px"};
+  min-width: ${(props) => props.minWidth || "0"};
+  min-height: ${(props) => props.minHeight || "0"};
 `;
 
 export const Header = styled.div`
@@ -92,6 +89,7 @@ export const Input = styled.input`
   padding-left: 12px;
   padding-right: 12px;
   background-color: ${theme.lightBackground};
+  font-size: 1rem;
 
   &:focus {
     outline: none;
@@ -122,7 +120,9 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  ${props => props.transparent && css`
-    background: transparent;
-  `}
+  ${(props) =>
+    props.transparent &&
+    css`
+      background: transparent;
+    `}
 `;

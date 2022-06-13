@@ -18,6 +18,9 @@ import {
   AiOutlineCheckCircle,
   AiOutlinePlus,
 } from "react-icons/ai";
+import Entry from "../components/Entry";
+
+import mockData from "../data/mockData";
 
 function Home() {
   const github = "https://github.com/dhisonp";
@@ -48,7 +51,7 @@ function Home() {
         </HeaderItem>
       </Header>
       <Container>
-        <Box>
+        <Box minHeight={"40vh"} minWidth={"50vw"}>
           <Row>
             <Input placeholder="Enter a new ToDo.." />{" "}
             <Button transparent>
@@ -59,6 +62,11 @@ function Home() {
               />
             </Button>
           </Row>
+          <Box padding={"24px"} margin={"12px"}>
+            {mockData.map((child) => (
+              <Entry taskName={child.taskName} id={child.id} />
+            ))}
+          </Box>
         </Box>
       </Container>
     </>
