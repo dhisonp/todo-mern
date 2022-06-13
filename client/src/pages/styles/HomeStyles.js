@@ -37,6 +37,10 @@ export const Box = styled.div`
   min-height: ${(props) => props.minHeight || "0"};
 `;
 
+export const ScrollableBox = styled(Box)`
+  overflow-y: scroll;
+`;
+
 export const Header = styled.div`
   position: absolute;
   display: flex;

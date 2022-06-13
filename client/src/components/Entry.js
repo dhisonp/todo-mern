@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiFillDelete } from "react-icons/ai";
+import { TiDeleteOutline as DeleteIcon } from "react-icons/ti";
 import { Button } from "../pages/styles/HomeStyles";
 
 const Left = styled.span`
@@ -28,7 +28,7 @@ const Entry = (props) => {
       <Left>{props.taskName}</Left>
       <Right>
         <Button transparent onMouseUp={() => deleteHandler(props.id)}>
-          <AiFillDelete />
+          <DeleteIcon />
         </Button>
       </Right>
     </Row>

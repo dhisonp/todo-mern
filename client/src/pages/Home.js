@@ -12,6 +12,7 @@ import {
   Button,
   Row,
   theme,
+  ScrollableBox,
 } from "./styles/HomeStyles";
 import {
   AiFillGithub,
@@ -62,11 +63,11 @@ function Home() {
               />
             </Button>
           </Row>
-          <Box padding={"24px"} margin={"12px"}>
+          <ScrollableBox padding={"24px"} margin={"12px"}>
             {mockData.map((child) => (
               <Entry taskName={child.taskName} id={child.id} />
             ))}
-          </Box>
+          </ScrollableBox>
         </Box>
       </Container>
     </>
