@@ -10,18 +10,59 @@ export const theme = {
   lightBackground: "#F4F4F4",
 };
 
+const size = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
+
 export const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  height: 100vh;
+  width: 100vw;
   flex-direction: column;
-  justify-content: center;
-  max-width: 100%;
-  min-height: 100vh;
   align-items: center;
-  background-color: ${theme.lightBackground};
+  background-color: mintcream;
+  justify-content: center;
 
-  @media (min-width: 1024px) {
-    flex-wrap: nowrap;
+  @media (max-width: ${size.tablet}) {
+    background-color: aliceblue;
+  }
+
+  @media (max-width: ${size.mobileL}) {
+    background-color: yellowgreen;
+  }
+`;
+
+export const OuterContainer = styled.div`
+  /* background-color: black; */
+  display: flex;
+  flex-grow: 1;
+  max-width: 80vw;
+  @media (min-width: ${size.tablet}) {
+    background-color: transparent;
+    display: flex;
+    flex-grow: 1;
+    min-width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const InnerContainer = styled.div`
+  /* background-color: tomato; */
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  width: 100%;
+  @media (min-width: ${size.tablet}) {
+    padding: 24px;
+    border-radius: 4px;
+    width: 50%;
   }
 `;
 
@@ -37,21 +78,23 @@ export const Box = styled.div`
   min-height: ${(props) => props.minHeight || "0"};
 `;
 
-export const ScrollableBox = styled(Box)`
-  overflow-y: scroll;
+export const ScrollableBox = styled.div`
+  overflow: scroll;
+  max-height: 350px;
+  margin-top: 24px;
+  border: solid;
+  border-radius: 2px;
+  border-color: ${theme.primary};
+  background-color: white;
+  padding-top: 18px;
+  padding-bottom: 12px;
+  padding-inline: 14px;
 `;
 
 export const Header = styled.div`
-  position: absolute;
   display: flex;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-between;
-  min-height: 10vh;
   /* background-color: ${theme.primary}; */
+  width: 100vw;
 `;
 
 export const HeaderItem = styled.div`
@@ -70,7 +113,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const Span = styled.span`
-  color: #555;
+  color: ${theme.textMedium};
 `;
 
 export const H1 = styled.h1`
@@ -94,6 +137,7 @@ export const Input = styled.input`
   padding-right: 12px;
   background-color: ${theme.lightBackground};
   font-size: 1rem;
+  margin-bottom: 18px;
 
   &:focus {
     outline: none;
@@ -129,4 +173,9 @@ export const Button = styled.button`
     css`
       background: transparent;
     `}
+`;
+
+export const Footer = styled.div`
+  margin: 6px;
+  align-self: flex-end;
 `;

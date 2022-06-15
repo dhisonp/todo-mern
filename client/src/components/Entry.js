@@ -7,11 +7,17 @@ const Left = styled.span`
   font-size: 1rem;
 `;
 
-const Row = styled.div`
+const Card = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  border: solid;
+  border-width: 1.5px;
+  border-radius: 2px;
+  border-color: lightgrey;
+  padding: 6px;
+  background-color: lavenderblush;
 `;
 
 const Right = styled.div`
@@ -24,14 +30,14 @@ const deleteHandler = (id) => {
 
 const Entry = (props) => {
   return (
-    <Row>
+    <Card>
       <Left>{props.taskName}</Left>
       <Right>
         <Button transparent onMouseUp={() => deleteHandler(props.id)}>
-          <DeleteIcon />
+          <DeleteIcon size={16}/>
         </Button>
       </Right>
-    </Row>
+    </Card>
   );
 };
 

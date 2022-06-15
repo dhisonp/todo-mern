@@ -5,7 +5,8 @@ var fs = require("fs");
 var alphabet = ["a", "b", "c", "d", "e", "f", "g"];
 
 function generateData() {
-  const dataCount = 9;
+  //Change data count here:
+  const dataCount = 40;
   var dataArray = [];
   for (var i = 0; i < dataCount; i++) {
     const newData = {
