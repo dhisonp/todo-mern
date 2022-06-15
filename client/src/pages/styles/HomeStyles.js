@@ -80,6 +80,10 @@ export const Box = styled.div`
 
 export const ScrollableBox = styled.div`
   overflow: scroll;
+  //Hide visible scrollbar
+  &::-webkit-scrollbar{
+    display: none;
+  }
   max-height: 350px;
   margin-top: 24px;
   border: solid;

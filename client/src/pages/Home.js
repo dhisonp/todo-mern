@@ -31,6 +31,11 @@ function Home() {
     </Span>
   );
 
+  const handleAdd = (text) => {
+    alert("Added!");
+    console.log(`${text} added to the list.`);
+  }
+
   return (
     <Container>
       <Header>
@@ -42,7 +47,7 @@ function Home() {
         <InnerContainer>
           <Row>
             <Input placeholder="Enter a new ToDo.." />{" "}
-            <Button transparent>
+            <Button transparent onMouseUp={handleAdd}>
               <AiOutlinePlus
                 size={24}
                 style={{ marginLeft: 4, marginBottom: 18 }}
