@@ -31,10 +31,9 @@ function Home() {
     </Span>
   );
 
-  const handleAdd = (text) => {
-    alert("Added!");
-    console.log(`${text} added to the list.`);
-  }
+  const handleAdd = (text) => {;
+    alert("Submit")
+  };
 
   return (
     <Container>
@@ -62,9 +61,7 @@ function Home() {
           </ScrollableBox>
         </InnerContainer>
       </OuterContainer>
-      <Footer>
-        {githubSpan}
-      </Footer>
+      <Footer>{githubSpan}</Footer>
     </Container>
   );
 }

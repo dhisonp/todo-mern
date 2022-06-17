@@ -6,7 +6,8 @@ require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
-// app.use(require("./routes/record"));
+app.use(express.urlencoded({ extended: true }));
+app.use(require("./router"));
 
 //Mongo DB Connection
 const dbo = require("./db/conn");
@@ -16,4 +17,8 @@ app.listen(port, () => {
     if (err) console.error(err);
   });
   console.log(`Server is running on port: ${port}`);
+});
+
+app.get("/test/", (req, res) => {
+  res.send("Hello, World!");
 });
