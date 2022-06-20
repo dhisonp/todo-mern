@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TiDeleteOutline as DeleteIcon } from "react-icons/ti";
 import { Button } from "../pages/styles/HomeStyles";
+import axios from "axios";
 
 const Left = styled.span`
   text-align: left;
@@ -24,17 +25,13 @@ const Right = styled.div`
   text-align: right;
 `;
 
-const deleteHandler = (id) => {
-  alert(`Deleting: ${id}`);
-};
-
 const Entry = (props) => {
   return (
     <Card>
       <Left>{props.taskName}</Left>
       <Right>
-        <Button transparent onMouseUp={() => deleteHandler(props.id)}>
-          <DeleteIcon size={16}/>
+        <Button transparent onMouseUp={() => props.handleDelete(props.id)}>
+          <DeleteIcon size={16} />
         </Button>
       </Right>
     </Card>
