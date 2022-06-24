@@ -81,7 +81,7 @@ export const Box = styled.div`
 export const ScrollableBox = styled.div`
   overflow: scroll;
   //Hide visible scrollbar
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
   max-height: 350px;
@@ -117,7 +117,8 @@ export const HeaderRight = styled.div`
 `;
 
 export const Span = styled.span`
-  color: ${theme.textMedium};
+  color: ${props => props.color || theme.textMedium};
+  margin-bottom: ${props => props.marginBottom};
 `;
 
 export const H1 = styled.h1`

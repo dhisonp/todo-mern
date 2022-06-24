@@ -58,6 +58,10 @@ function Home() {
   async function handleAdd(event) {
     // setLoading(true); //LOADING NOT WORKING!
     event.preventDefault();
+    if(text.length < 3){
+      window.alert("ToDo should be more than 3 characters.");
+      return;
+    }
     const obj = {
       taskName: text,
     };
@@ -73,6 +77,14 @@ function Home() {
       });
   }
 
+  async function handleOnEnter(event) {
+    if (event.key == "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      handleAdd(event);
+    }
+  }
+
   async function handleDelete(id) {
     //Please add validation!
     await axios
@@ -85,6 +97,20 @@ function Home() {
         console.log(err);
       });
   }
+
+  const renderList = () => {
+    if (data.length == 0) {
+      return <Span color="gray">No ToDos. Add some to get started!</Span>
+    }
+    return data.map((child) => (
+      <Entry
+        key={child._id}
+        taskName={child.taskName}
+        id={child._id}
+        handleDelete={handleDelete}
+      />
+    ));
+  };
 
   return (
     <Container>
@@ -101,6 +127,7 @@ function Home() {
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
+              onKeyDown={handleOnEnter}
             />{" "}
             <Button transparent onMouseUp={handleAdd} disabled={loading}>
               <AiOutlinePlus
@@ -110,16 +137,7 @@ function Home() {
               />
             </Button>
           </Row>
-          <ScrollableBox>
-            {data.map((child) => (
-              <Entry
-                key={child._id}
-                taskName={child.taskName}
-                id={child._id}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </ScrollableBox>
+          <ScrollableBox>{renderList()}</ScrollableBox>
         </InnerContainer>
       </OuterContainer>
       <Footer>{githubSpan}</Footer>
