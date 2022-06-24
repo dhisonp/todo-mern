@@ -48,7 +48,7 @@ export const OuterContainer = styled.div`
     display: flex;
     flex-grow: 1;
     min-width: 100vw;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
   }
 `;
@@ -84,7 +84,8 @@ export const ScrollableBox = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  max-height: 350px;
+  min-height: 240px;
+  max-height: 360px;
   margin-top: 24px;
   border: solid;
   border-radius: 2px;
@@ -121,8 +122,14 @@ export const Span = styled.span`
   margin-bottom: ${props => props.marginBottom};
 `;
 
+export const CenterSpan = styled(Span)`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+`
+
 export const H1 = styled.h1`
-  color: ${theme.text};
+  color: ${theme.primary};
   margin-top: 12px;
   margin-bottom: 12px;
   font-size: 1.8rem;
