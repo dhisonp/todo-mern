@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { TiDeleteOutline as DeleteIcon } from "react-icons/ti";
 import { Button } from "../pages/styles/HomeStyles";
-import axios from "axios";
 
 const Left = styled.span`
   text-align: left;

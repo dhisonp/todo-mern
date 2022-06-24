@@ -14,6 +14,7 @@ import {
   ScrollableBox,
   InnerContainer,
   OuterContainer,
+  CenterSpan,
 } from "./styles/HomeStyles";
 import { AiFillGithub, AiOutlinePlus } from "react-icons/ai";
 import Entry from "../components/Entry";
@@ -25,6 +26,7 @@ function Home() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const dev = false; //DEV MODE
 
   useEffect(() => {
     async function getList() {
@@ -56,8 +58,16 @@ function Home() {
   );
 
   async function handleAdd(event) {
-    // setLoading(true); //LOADING NOT WORKING!
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     event.preventDefault();
+    if (text.length < 3) {
+      window.alert("ToDo should be more than 3 characters.");
+      setLoading(false);
+      return;
+    }
     const obj = {
       taskName: text,
     };
@@ -67,14 +77,24 @@ function Home() {
         console.log("POST status: " + res.statusText);
         setRefreshKey((c) => c + 1);
         setText("");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
+    return;
+  }
+
+  async function handleOnEnter(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      handleAdd(event);
+    }
   }
 
   async function handleDelete(id) {
-    //Please add validation!
     await axios
       .delete(`http://localhost:8080/${id}`)
       .then((res) => {
@@ -86,8 +106,31 @@ function Home() {
       });
   }
 
+  const renderList = () => {
+    if (data.length === 0) {
+      return <CenterSpan>No ToDos. Add some to get started!</CenterSpan>;
+    }
+    return data.map((child) => (
+      <Entry
+        key={child._id}
+        taskName={child.taskName}
+        id={child._id}
+        handleDelete={handleDelete}
+      />
+    ));
+  };
+
+  const renderLoading = loading ? (
+    <Span>Loading</Span>
+  ) : (
+    <Span>Not Loading</Span>
+  );
+
   return (
     <Container>
+      <Span style={{ position: "absolute", top: 0, left: 0 }}>
+        {dev ? renderLoading : null}
+      </Span>
       <Header>
         <HeaderItem>
           <H1>SIMPL-IT</H1>
@@ -101,6 +144,7 @@ function Home() {
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
+              onKeyDown={handleOnEnter}
             />{" "}
             <Button transparent onMouseUp={handleAdd} disabled={loading}>
               <AiOutlinePlus
@@ -110,16 +154,7 @@ function Home() {
               />
             </Button>
           </Row>
-          <ScrollableBox>
-            {data.map((child) => (
-              <Entry
-                key={child._id}
-                taskName={child.taskName}
-                id={child._id}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </ScrollableBox>
+          <ScrollableBox>{renderList()}</ScrollableBox>
         </InnerContainer>
       </OuterContainer>
       <Footer>{githubSpan}</Footer>
