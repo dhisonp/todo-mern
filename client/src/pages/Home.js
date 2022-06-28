@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   Container,
   Header,
+  HeaderRight,
+  HeaderLeft,
   Footer,
   Span,
   H1,
   Link,
-  HeaderItem,
   Input,
   Button,
   Row,
@@ -15,6 +16,7 @@ import {
   InnerContainer,
   OuterContainer,
   CenterSpan,
+  HeaderLink,
 } from "./styles/HomeStyles";
 import { AiFillGithub, AiOutlinePlus } from "react-icons/ai";
 import Entry from "../components/Entry";
@@ -28,6 +30,8 @@ function Home() {
   const [refreshKey, setRefreshKey] = useState(0);
   const dev = false; //DEV MODE
 
+  // Initialization
+  document.title = "Simpl-it – A simple To Do app";
   useEffect(() => {
     async function getList() {
       const response = await axios
@@ -56,6 +60,8 @@ function Home() {
       </Link>
     </Span>
   );
+
+  // Handlers
 
   async function handleAdd(event) {
     if (loading) {
@@ -132,9 +138,13 @@ function Home() {
         {dev ? renderLoading : null}
       </Span>
       <Header>
-        <HeaderItem>
+        <HeaderLeft>
           <H1>SIMPL-IT</H1>
-        </HeaderItem>
+        </HeaderLeft>
+        <HeaderRight>
+          <HeaderLink>Login</HeaderLink>
+          <HeaderLink>Register</HeaderLink>
+        </HeaderRight>
       </Header>
       <OuterContainer>
         <InnerContainer>

@@ -8,6 +8,7 @@ export const theme = {
   textMedium: "#555",
   textLight: "#777",
   lightBackground: "#F4F4F4",
+  darkMint: "#EAFFF2",
 };
 
 const size = {
@@ -22,8 +23,8 @@ const size = {
 
 export const Container = styled.div`
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   flex-direction: column;
   align-items: center;
   background-color: mintcream;
@@ -48,13 +49,11 @@ export const OuterContainer = styled.div`
     display: flex;
     flex-grow: 1;
     min-width: 100vw;
-    /* align-items: center; */
     justify-content: center;
   }
 `;
 
 export const InnerContainer = styled.div`
-  /* background-color: tomato; */
   display: flex;
   flex-direction: column;
   padding: 12px;
@@ -98,24 +97,22 @@ export const ScrollableBox = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  /* background-color: ${theme.primary}; */
-  width: 100vw;
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+  padding: 12px;
+  padding-block: 0px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${theme.darkMint};
 `;
 
-export const HeaderItem = styled.div`
-  width: 100%;
-  min-height: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+export const HeaderLeft = styled.div`
 `;
 
 export const HeaderRight = styled.div`
-  text-align: right;
-  justify-content: end;
-  flex-grow: 1;
-  padding-right: 12px;
-`;
+  justify-content: flex-end;
+`
 
 export const Span = styled.span`
   color: ${props => props.color || theme.textMedium};
@@ -129,9 +126,7 @@ export const CenterSpan = styled(Span)`
 `
 
 export const H1 = styled.h1`
-  color: ${theme.primary};
-  margin-top: 12px;
-  margin-bottom: 12px;
+  color: ${theme.text};
   font-size: 1.8rem;
 `;
 
@@ -139,6 +134,10 @@ export const Link = styled.a`
   text-decoration: none;
   color: ${theme.secondary};
 `;
+
+export const HeaderLink = styled(Link)`
+  margin-inline: 8px;
+`
 
 export const Input = styled.input`
   border: 0;
