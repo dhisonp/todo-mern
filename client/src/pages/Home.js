@@ -20,6 +20,7 @@ import {
 } from "./styles/HomeStyles";
 import { AiFillGithub, AiOutlinePlus } from "react-icons/ai";
 import Entry from "../components/Entry";
+import LoginModal from "../components/LoginModal";
 // import mockData from "../data/mockData.json";
 const axios = require("axios");
 
@@ -29,6 +30,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const dev = false; //DEV MODE
+  const [modalOpen, toggleModal] = useState(false);
 
   // Initialization
   document.title = "Simpl-it – A simple To Do app";
@@ -137,6 +139,7 @@ function Home() {
       <Span style={{ position: "absolute", top: 0, left: 0 }}>
         {dev ? renderLoading : null}
       </Span>
+      <LoginModal isOpen={modalOpen} toggleModal={toggleModal}/>
       <Header>
         <HeaderLeft>
           <H1>SIMPL-IT</H1>
